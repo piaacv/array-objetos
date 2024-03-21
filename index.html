@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Centro Médico Ñuñoa</title>
-    <script defer src="./assets/js/script.js"></script>
 </head>
 <script>
 document.write('<p>Estadisticas centro medico ñuñoa</p>');
@@ -37,12 +36,50 @@ var dental = [
     {hora: '14:00', especialista: 'RAQUEL VILLASECA',       paciente: 'ANA SEPULVEDA',  rut: '14441281-0', prevision: 'ISAPRE'},
 ];
 
-//Agregar código para el desafio 2 aquí
+//Agregar horas a traumatología
+
+traumatologia.push(
+    {hora: '9:00',  especialista: 'RENÉ POBLETE', paciente: 'ANA GELLONA',     rut: '13123329-7', prevision: 'ISAPRE'},
+    {hora: '9:30',  especialista: 'MARIA SOLAR', paciente: 'RAMIRO ANDRADE',     rut: '12221451-K', prevision: 'FONASA'},
+    {hora: '10:00',  especialista: 'RAUL LOYOLA', paciente: 'CARMEN ISLA',     rut: '10112348-3', prevision: 'ISAPRE'},
+    {hora: '10:30',  especialista: 'ANTONIO LARENAS', paciente: 'PABLO LOAYZA',     rut: '13453234-1', prevision: 'ISAPRE'},
+    {hora: '12:00',  especialista: 'MATIAS ARAVENA', paciente: 'SUSANA POBLETE',     rut: '14345656-6 ', prevision: 'FONASA'},
+);
+
+console.log(traumatologia);
+
+//Eliminar primer y ultimo elemento de radiología
+radiologia.shift();
+radiologia.pop();
+console.log(radiologia);
 
 
+//Imprimir lista de consultas médicas dentales
+document.write(`<h2>Lista médica dental</h2>`);
+dental.forEach((hora) => document.write(`<p>${hora.hora}-${hora.especialista}-${hora.paciente}-${hora.rut}-${hora.prevision}</p>`));
+
+//Imprimir listado total de pacientes
+
+let pacientes = radiologia.concat(traumatologia, dental);
+document.write(`<h2>Lista total de pacientes</h2>`);
+pacientes.forEach((nombre) => document.write(`<p>${nombre.paciente}</p>`));
 
 
-//Agregar código para el desafio 2 aquí
+//Imprimir listado de pacientes dentales con ISAPRE
+document.write(`<h2>Lista pacientes dentales con Isapre</h2>`);
+let isapres = dental.filter(consulta =>{
+    if(consulta.prevision == "ISAPRE"){
+        document.write(`<p> ${consulta.paciente}-${consulta.prevision}</p>`);
+    }
+});
+
+//Imprimir listado de pacientes traumatología con fonasa
+document.write(`<h2>Lista pacientes traumatología con fonasa</h2>`);
+let fonasas = traumatologia.filter(consulta => {
+    if(consulta.prevision == "FONASA"){
+        document.write(`<p> ${consulta.paciente} - ${consulta.prevision}</p>`)
+    }
+})
 
 document.write(`<p>Cantidad de atenciones para Radiología: ${radiologia.length}</p>`);
 document.write(`<p>Cantidad de atenciones para Traumatología: ${traumatologia.length}</p>`);
